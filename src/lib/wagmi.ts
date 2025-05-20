@@ -46,5 +46,7 @@ export const config = createConfig({
     removeItem: (key) => {
       localStorage.removeItem(key);
     },
+    // Add the key method required by the Storage interface
+    key: (index) => localStorage.key(index) || null,
   },
 });
