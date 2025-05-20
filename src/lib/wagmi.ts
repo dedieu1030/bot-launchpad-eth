@@ -46,5 +46,8 @@ export const config = createConfig({
     removeItem: (key) => {
       localStorage.removeItem(key);
     },
+    key: (index) => {
+      return localStorage.key(index) || '';
+    },
   },
 });
