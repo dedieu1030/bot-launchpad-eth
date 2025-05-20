@@ -28,13 +28,20 @@ export const config = createConfig({
     [mainnet.id]: http(),
     [sepolia.id]: http(),
   },
-  // Use the createStorage function instead of directly assigning localStorage
+  // Implement storage with proper type handling
   storage: {
     getItem: (key) => {
-      return localStorage.getItem(key);
+      const item = localStorage.getItem(key);
+      if (item === null) return null;
+      try {
+        return JSON.parse(item);
+      } catch {
+        return item;
+      }
     },
     setItem: (key, value) => {
-      localStorage.setItem(key, value);
+      const serialized = typeof value === 'string' ? value : JSON.stringify(value);
+      localStorage.setItem(key, serialized);
     },
     removeItem: (key) => {
       localStorage.removeItem(key);
