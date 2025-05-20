@@ -28,5 +28,16 @@ export const config = createConfig({
     [mainnet.id]: http(),
     [sepolia.id]: http(),
   },
-  storage: localStorage,
+  // Use the createStorage function instead of directly assigning localStorage
+  storage: {
+    getItem: (key) => {
+      return localStorage.getItem(key);
+    },
+    setItem: (key, value) => {
+      localStorage.setItem(key, value);
+    },
+    removeItem: (key) => {
+      localStorage.removeItem(key);
+    },
+  },
 });

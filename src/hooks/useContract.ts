@@ -121,7 +121,7 @@ export function useContract(contractAddress: string) {
   };
 
   return {
-    balance: balance ? Number(formatEther(balance.toString())) : 0,
+    balance: balance ? Number(formatEther(BigInt(balance.toString()))) : 0,
     isRunning: isRunning ?? false,
     invest,
     start,
