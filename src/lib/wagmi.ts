@@ -46,6 +46,8 @@ export const config = createConfig({
     removeItem: (key) => {
       localStorage.removeItem(key);
     },
-    key: (index) => localStorage.key(index) || '',
+    // Implémentation correcte de la méthode key pour Wagmi v2
+    length: localStorage.length,
+    clear: () => localStorage.clear()
   },
 });
