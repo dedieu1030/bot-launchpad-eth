@@ -28,7 +28,7 @@ export const config = createConfig({
     [mainnet.id]: http(),
     [sepolia.id]: http(),
   },
-  // Implement storage with proper type handling
+  // Implement storage with proper type handling - only include required methods
   storage: {
     getItem: (key) => {
       const item = localStorage.getItem(key);
@@ -45,9 +45,6 @@ export const config = createConfig({
     },
     removeItem: (key) => {
       localStorage.removeItem(key);
-    },
-    key: (index) => {
-      return localStorage.key(index) || '';
-    },
+    }
   },
 });
