@@ -2,7 +2,6 @@
 import { createConfig, http } from 'wagmi';
 import { mainnet, sepolia } from 'wagmi/chains';
 import { coinbaseWallet, injected, walletConnect } from 'wagmi/connectors';
-import { createStorage } from 'wagmi/storage';
 
 // Vérifiez si nous sommes en production
 const isProd = import.meta.env.PROD;
@@ -29,5 +28,5 @@ export const config = createConfig({
     [mainnet.id]: http(),
     [sepolia.id]: http(),
   },
-  storage: createStorage({ storage: window.localStorage }),
+  storage: localStorage,
 });

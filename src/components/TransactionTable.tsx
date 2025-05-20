@@ -1,6 +1,5 @@
-
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Badge } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { CheckCircle, Clock, XCircle } from "lucide-react";
 
 interface Transaction {
@@ -40,11 +39,11 @@ export function TransactionTable({ transactions, emptyMessage = "Aucune transact
   const getStatusBadge = (status: Transaction['status']) => {
     switch (status) {
       case 'confirmed':
-        return <Badge variant="outline" className="bg-success/10 text-success border-success/20 flex items-center gap-1"><CheckCircle className="h-3 w-3" /> Confirmé</Badge>;
+        return <Badge variant="outline" className="bg-green-100 text-green-800 border-green-300 flex items-center gap-1"><CheckCircle className="h-3 w-3" /> Confirmé</Badge>;
       case 'pending':
-        return <Badge variant="outline" className="bg-warning/10 text-warning border-warning/20 flex items-center gap-1"><Clock className="h-3 w-3" /> En attente</Badge>;
+        return <Badge variant="outline" className="bg-yellow-100 text-yellow-800 border-yellow-300 flex items-center gap-1"><Clock className="h-3 w-3" /> En attente</Badge>;
       case 'failed':
-        return <Badge variant="outline" className="bg-destructive/10 text-destructive border-destructive/20 flex items-center gap-1"><XCircle className="h-3 w-3" /> Échoué</Badge>;
+        return <Badge variant="outline" className="bg-red-100 text-red-800 border-red-300 flex items-center gap-1"><XCircle className="h-3 w-3" /> Échoué</Badge>;
     }
   };
 

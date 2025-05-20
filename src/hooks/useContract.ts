@@ -16,7 +16,9 @@ export function useContract(contractAddress: string) {
     abi: botABI,
     functionName: 'getBalance',
     account: address,
-    enabled: !!address && !!contractAddress,
+    query: {
+      enabled: !!address && !!contractAddress,
+    },
   });
 
   const { data: isRunning } = useReadContract({
@@ -24,7 +26,9 @@ export function useContract(contractAddress: string) {
     abi: botABI,
     functionName: 'isRunning',
     account: address,
-    enabled: !!address && !!contractAddress,
+    query: {
+      enabled: !!address && !!contractAddress,
+    },
   });
 
   const { writeContract: writeInvest, data: investHash } = useWriteContract();
@@ -33,17 +37,14 @@ export function useContract(contractAddress: string) {
 
   const { isSuccess: isInvestSuccess, isError: isInvestError } = useWaitForTransactionReceipt({
     hash: investHash,
-    enabled: !!investHash,
   });
 
   const { isSuccess: isStartSuccess, isError: isStartError } = useWaitForTransactionReceipt({
     hash: startHash,
-    enabled: !!startHash,
   });
 
   const { isSuccess: isWithdrawSuccess, isError: isWithdrawError } = useWaitForTransactionReceipt({
     hash: withdrawHash,
-    enabled: !!withdrawHash,
   });
 
   const invest = async (amount: number) => {
