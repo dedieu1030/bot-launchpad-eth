@@ -32,7 +32,7 @@ export const config = createConfig({
   storage: {
     getItem: (key) => {
       const item = localStorage.getItem(key);
-      if (item === null) return null;
+      if (item === null) return undefined;
       try {
         return JSON.parse(item);
       } catch {
@@ -46,7 +46,5 @@ export const config = createConfig({
     removeItem: (key) => {
       localStorage.removeItem(key);
     },
-    // Add the key method required by the Storage interface
-    key: (index) => localStorage.key(index) || null,
   },
 });
